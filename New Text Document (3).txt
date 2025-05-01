@@ -1,0 +1,74 @@
+for login
+{
+"email":"alaafawzy963@gmail.com",
+"password":"alaa1234"
+}
+
+for change password
+{
+"old_password":"alaa1234",
+"new_password":"alaa12345"
+}
+
+to set a new password for a user
+{
+"user_id":"4",
+"new_password":"alaa1234"
+}
+
+update user data
+{
+  "name": "Updated Name",
+  "role": "Teacher Assistant"
+}
+
+
+/api/members/users/     to list users
+/api/members/login/
+/api/members/logout/
+/api/members/change-password/
+/api/members/set-new-password/
+/api/members/add-new-member/
+/api/members/users/<int:user_id>/update/ method must be patch
+
+
+Student
+
+
+add new student
+/api/students/add-new-student/
+{
+"student_id":"123456",
+"name":"student 1",
+"level":"3"
+}
+/api/students/login/
+{
+"student_id":"123456",
+"password":"123456"
+}
+
+
+/api/students/change-password/
+{
+"old_password":"alaa1234",
+"new_password":"alaa12345"
+}
+/api/students/update/ method patch
+{
+avatar:
+}
+
+/api/students/update/student_id/  method patch 
+{
+"name":"test_student",
+"level":"4",
+"attendance":"2"
+}
+/api/students/set-password/
+{
+"student_id":"123456",
+"new_password":"1234567"
+}
+/api/students/ to list students
+
