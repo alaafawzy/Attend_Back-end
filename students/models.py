@@ -11,6 +11,10 @@ class Student(models.Model):
     # courses = models.ManyToManyField(Course, related_name='students')
     attendance = models.PositiveIntegerField(default=5)  # New field!
 
+    @property
+    def is_authenticated(self):
+        return True
+
     def __str__(self):
         return self.name
 

@@ -22,6 +22,10 @@ class StudentLoginSerializer(serializers.Serializer):
     student_id = serializers.CharField()
     password = serializers.CharField(write_only=True)
 
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ['student_id', 'name', 'avatar', 'level', 'attendance']
 
 class StudentUpdateSerializer(serializers.ModelSerializer):
     class Meta:
