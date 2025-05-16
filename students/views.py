@@ -115,7 +115,7 @@ class StudentProfileView(APIView):
         return Response(data)
         
 class StudentUpdateView(APIView):
-    authentication_classes = [JWTAuthentication]
+    authentication_classes = [StudentJWTAuthentication]
     permission_classes = [IsAuthenticated]
 
     def patch(self, request):
@@ -128,7 +128,7 @@ class StudentUpdateView(APIView):
 
 
 class StudentChangePasswordView(APIView):
-    authentication_classes = [JWTAuthentication]
+    authentication_classes = [StudentJWTAuthentication]
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
