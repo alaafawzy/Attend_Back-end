@@ -9,6 +9,8 @@ class Student(models.Model):
     level = models.CharField(max_length=50)
     avatar = models.ImageField(upload_to='student_avatars/', null=True, blank=True)
     # courses = models.ManyToManyField(Course, related_name='students')
+    courses = models.ManyToManyField(Course, related_name='students')
+
     attendance = models.PositiveIntegerField(default=5)  # New field!
 
     @property
@@ -22,3 +24,5 @@ class Student(models.Model):
         # if not self.pk or not is_password_usable(self.password):  # New or raw password
         #     self.password = make_password(self.password)
         super().save(*args, **kwargs)
+    class Meta:
+        db_table= 'student'

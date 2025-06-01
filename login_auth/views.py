@@ -51,7 +51,7 @@ class LoginView(APIView):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)  # creates session and sets sessionid cookie
-            csrf_token = get_token(request)  # generate CSRF token
+            # csrf_token = get_token(request)  # generate CSRF token
             return Response({
                 "message": "Login successful",
                 "user": {
@@ -62,12 +62,12 @@ class LoginView(APIView):
                     "avatar": request.build_absolute_uri(user.avatar.url) if user.avatar else None,
                     "is_staff": user.is_staff
                 },
-                "csrfToken": csrf_token
+                # "csrfToken": csrf_token
             })
         return Response({"error": "Invalid email or password"}, status=status.HTTP_401_UNAUTHORIZED)
     
 class LogoutView(APIView):
-    def post(self, request):
+    def get(self, request):
         logout(request)
         return Response({"message": "Logged out successfully"})
     

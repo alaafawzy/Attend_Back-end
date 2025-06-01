@@ -20,7 +20,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     is_staff = models.BooleanField(default=False)
     avatar = models.ImageField(upload_to='avatars/', null=True, blank=True)
-    role = models.CharField(max_length=50, default='Lecturer') # 'Lecture', 'teacher assist', 'admin'
+    role = models.CharField(max_length=50, default='admin') # 'Lecture', 'teacher assist', 'admin'
     name = models.CharField(max_length=50)
 
     USERNAME_FIELD = 'email'
@@ -30,3 +30,5 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+    class Meta:
+        db_table= 'user'
