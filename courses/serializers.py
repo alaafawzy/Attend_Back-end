@@ -9,6 +9,9 @@ class CourseSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         course = super().create(validated_data)
 
+        # Auto-enroll students with the same level
+        matching_students = Student.objects.filter(level=course.level)
+        course.students.set(matching_students)
         # Generate sessions automatically
         day_name = validated_data['day']  # e.g. 'Monday'
         session_date = validated_data['start_date']
@@ -39,3 +42,7 @@ class SessionSerializer(serializers.ModelSerializer):
         fields = '__all__'
         
 
+class StudentCourseSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Course
+        fields = ['id', 'name', 'start_date', 'day', 'time', 'level', 'instructor','number_of_sessions','image']

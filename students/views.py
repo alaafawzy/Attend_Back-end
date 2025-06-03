@@ -6,7 +6,6 @@ from .models import Student
 from .serializers import *
 from django.contrib.auth.hashers import check_password, make_password
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.permissions import IsAuthenticated
@@ -81,7 +80,7 @@ class StudentLoginView(APIView):
                     refresh["type"] = "student"
 
                     access = refresh.access_token
-                    access.set_exp(lifetime=timedelta(minutes=120))  # Optional: control expiry
+                    access.set_exp(lifetime=timedelta(days=30))  # Optional: control expiry
 
                     return Response({
                         "refresh": str(refresh),

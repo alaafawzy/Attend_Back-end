@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'login_auth',
     'students',
     'courses',
-    'attendance'  # التطبيق الخاص بالمصادقة
+    'attendance',
+    'notification'
 ]
 
 
