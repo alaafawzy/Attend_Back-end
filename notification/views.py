@@ -41,15 +41,20 @@ def send_absent_session_reminders():
         time__hour=reminder_time.hour,
         time__minute=reminder_time.minute
     )
+
     for session in sessions:
-        students = session.course.students.all()
-        for student in students:
+        enrolled_students = session.course.students.all()
+        attended_students = session.attended.all()
+
+        absent_students = enrolled_students.exclude(id__in=attended_students.values_list('id', flat=True))
+
+        for student in absent_students:
             Notification.objects.get_or_create(
                 user=student,
-                type='session_reminder',
+                type='absent',
                 session=session,
                 defaults={
-                    'message': f"Reminder: You have a session for '{session.course.name}' at {session.time.strftime('%H:%M')}"
+                    'message': f"Reminder: You have a session for '{session.course.name}' at {session.time.strftime('%H:%M')} and you haven't attended yet."
                 }
             )
 
@@ -59,6 +64,7 @@ class MyNotificationsAPIView(APIView):
 
     def get(self, request):
         send_upcoming_session_reminders()
+        send_absent_session_reminders
         notifications = request.user.notifications.all()
         data = [{
             "id": n.id,

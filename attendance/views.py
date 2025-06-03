@@ -17,7 +17,7 @@ def approve_attendance_request(request_obj):
     request_obj.status = 'approved'
     request_obj.reviewed_at = timezone.now()
     request_obj.save()
-    
+    request_obj.session.attended.add(request_obj.student)
     Notification.objects.create(
         user=request_obj.student,
         type='attendance_approved',
