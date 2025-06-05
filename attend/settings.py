@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-!c0y6o+xe-y@kr@jpb)pu@to-qv466n26@#^xj^3cwxo6v+egm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'students',
     'courses',
     'attendance',
-    'notification'
+    'notification',  # التطبيق الخاص بالمصادقة
+
+    'corsheaders',
 ]
 
 
@@ -76,14 +78,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",  # هذا يجب أن يكون أولاً
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
 
 ROOT_URLCONF = 'attend.urls'
 
@@ -151,9 +155,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS settings
+
+CORS_ALLOW_CREDENTIALS = True
+
+# CORS_ALLOWED_ORIGINS = [
+#     "https://django.nextapps.me",  # أو دومين الواجهة الأمامية الخاصة بك
+#     "https://your-frontend-domain.com"
+# ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://django.nextapps.me",
+    "https://hilarious-capybara-0df655.netlify.app/",
+]
+
+SESSION_COOKIE_SECURE = False  # Allow session cookie over HTTP
+CSRF_COOKIE_SECURE = False
