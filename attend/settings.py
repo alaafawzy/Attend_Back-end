@@ -178,5 +178,8 @@ CSRF_TRUSTED_ORIGINS = [
     "https://hilarious-capybara-0df655.netlify.app/",
 ]
 
-SESSION_COOKIE_SECURE = False  # Allow session cookie over HTTP
-CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SECURE = True  # Required when SameSite=None
+
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
