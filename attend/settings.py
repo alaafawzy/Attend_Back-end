@@ -164,20 +164,29 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS settings
 
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_CREDENTIALS = True
 
 # CORS_ALLOWED_ORIGINS = [
 #     "https://django.nextapps.me",  # أو دومين الواجهة الأمامية الخاصة بك
 #     "https://your-frontend-domain.com"
 # ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True
+
+# CSRF_TRUSTED_ORIGINS = [
+#     "https://django.nextapps.me",
+#     "https://hilarious-capybara-0df655.netlify.app",
+# ]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://django.nextapps.me",
+    "https://hilarious-capybara-0df655.netlify.app",
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://django.nextapps.me",
-    "https://hilarious-capybara-0df655.netlify.app/",
+    "https://hilarious-capybara-0df655.netlify.app",
 ]
-
 SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True  # Required when SameSite=None
 
