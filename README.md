@@ -43,3 +43,15 @@ A clean, modular **College Attendance Management System** built with Django to s
 ```bash
 git clone https://github.com/yourusername/college-attendance.git
 cd college-attendance
+
+
+2️⃣ **Create and activate a virtual environment:**
+```bash
+# Windows
+python -m venv .venv
+.venv\Scripts\activate
+
+3️⃣ **Install required libraries:**
+```bash
+pip install -r requirements.txt
+```
